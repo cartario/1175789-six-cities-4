@@ -27,6 +27,7 @@ export const extend = (oldData, newData) => {
 
 
 export const getRatingProcent = (rate) => {
+
   switch (true) {
     case rate >= 0 && rate < 1:
       return 0;

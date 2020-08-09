@@ -24,22 +24,26 @@ export const extend = (oldData, newData) => {
 //   return [...new Set(genresList)];
 // };
 
-// export const getTextRate = (rate) => {
-//   switch (true) {
-//     case rate >= RateLimits.NOTHING && rate < RateLimits.BAD:
-//       return TextRates.BAD;
-//     case rate >= RateLimits.BAD && rate < RateLimits.NORMAL:
-//       return TextRates.NORMAL;
-//     case rate >= RateLimits.NORMAL && rate < RateLimits.GOOD:
-//       return TextRates.GOOD;
-//     case rate >= RateLimits.GOOD && rate < RateLimits.VERY_GOOD:
-//       return TextRates.VERY_GOOD;
-//     case rate >= RateLimits.VERY_GOOD && rate < RateLimits.VERY_GOOD:
-//       return TextRates.AWESOME;
-//     default:
-//       return RateLimits.INCORRECT_RATE;
-//   }
-// };
+
+
+export const getRatingProcent = (rate) => {
+  switch (true) {
+    case rate >= 0 && rate < 1:
+      return 0;
+    case rate >= 1 && rate < 2:
+      return 20;
+    case rate >= 2 && rate < 3:
+      return 40;
+    case rate >= 3 && rate < 4:
+      return 60;
+    case rate >= 4 && rate < 5:
+      return 80;
+    case rate >= 5:
+        return 100;    
+    default:
+      return 0;
+  }
+};
 
 // const getFormatLessTen = (time) => {
 //   return time < 10 ? `0${time}` : `${time}`;

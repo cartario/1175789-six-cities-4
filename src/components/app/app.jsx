@@ -21,7 +21,7 @@ const offer = {
 };
 
 const App = (props) => {
-  const {isDataReady} = props;
+  const {isDataReady, currentId, offers} = props;
 
   if(!isDataReady) {
     return null;
@@ -41,10 +41,11 @@ const App = (props) => {
           }
         />
         <Route
-          path="/offer"
+          path={AppRoutes.ROOM}
           render= {()=>{
             return <OfferPage
-
+              currentId = {currentId}
+              offers = {offers}
             />;
           }
           }
@@ -69,6 +70,7 @@ const App = (props) => {
 const mapStateToProps = (state) => ({
   isDataReady: state.HOTELS.isDataReady,
   offers: state.HOTELS.hotels,
+  currentId: state.HOTELS.currentId,
 });
 
 export {App};

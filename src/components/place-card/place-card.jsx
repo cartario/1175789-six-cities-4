@@ -4,7 +4,7 @@ import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
 
 const PlaceCard = (props) => {
-  const {offer} = props;
+  const {offer, placeCardHoverHandler} = props;
 
   const {
     isPremium,
@@ -19,7 +19,7 @@ const PlaceCard = (props) => {
   } = offer;
 
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter = {() =>{placeCardHoverHandler(id)}}>
       {isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>

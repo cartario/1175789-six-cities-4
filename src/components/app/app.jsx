@@ -7,6 +7,7 @@ import Main from "../main/main.jsx";
 import OfferPage from "../offer-page/offer-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import Favorites from "../favorites/favorites.jsx";
+import PrivateRoute from "../private-route/private-route.jsx"
 
 import {connect} from "react-redux";
 
@@ -59,7 +60,7 @@ const App = (props) => {
           }
           }
         />
-        <Route
+        <PrivateRoute
           path={AppRoutes.FAVORITES}
           render= {()=>{
             return <Favorites

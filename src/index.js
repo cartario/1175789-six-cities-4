@@ -7,9 +7,11 @@ import thunkMiddleware from "redux-thunk";
 import {Provider} from "react-redux";
 import {reducers} from "./reducer/reducer.js";
 import {Operation} from "./reducer/hotels/hotels.js";
+import {ActionCreator} from "./reducer/user/user.js";
+import {Operation as UserOperation} from "./reducer/user/user.js";
 
 const onUnauthorized = () => {
-  return null;
+  store.dispatch(ActionCreator.requireAuthorization(false));
 };
 
 const api = createApi(onUnauthorized);
@@ -22,6 +24,7 @@ const store = createStore(
 );
 
 store.dispatch(Operation.loadHotels());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
   <Provider store={store} >

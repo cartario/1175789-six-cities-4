@@ -11,7 +11,7 @@ import PlacesListContainer from "../places-list-container/places-list-container.
 const userName = `Vasil3`;
 
 const Main = (props) => {
-
+  const {offers} = props;
   return (
     <>
       <div style={{display: `none`}}>
@@ -36,7 +36,9 @@ const Main = (props) => {
           <h1 className = "visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <Locations />
+              <Locations 
+                offers = {offers}
+              />
             </section>          
           </div>
           <div className="cities">

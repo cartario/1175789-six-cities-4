@@ -35,7 +35,7 @@ const App = (props) => {
           path={AppRoutes.MAIN}
           render= {()=>{
             return <Main
-            
+              offers={offers}
             />;
           }
           }

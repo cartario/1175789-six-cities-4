@@ -2,45 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
+import {getUniqCitiesList} from "../../utils.js";
 
+const LIMIT_CITIES_COUNT = 6;
 
+export const Locations = (props) => {
+  const {offers} = props;
+  const cities = getUniqCitiesList(offers).slice(0, LIMIT_CITIES_COUNT);
 
-export const Locations = () => {
   return (
-    <>
+          <>
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
+              {cities.map((city) =>               
+                <li key={city} className="locations__item">
+                  <a className="locations__item-link tabs__item" href="#">
+                    <span>{city}</span>
+                  </a>
+                </li>)}
+              
             </ul>
-    </> 
+          </> 
   );
 };
 

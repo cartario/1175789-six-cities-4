@@ -4,11 +4,11 @@ import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
 
 const PlaceCard = (props) => {
-  const {offer, placeCardHoverHandler} = props;
+  const {offer, placeCardHoverHandler, currentIdClickHandler} = props;
 
   const {
     isPremium,
-    previewImg,
+    previewImage,
     price,
     title,
     type,
@@ -19,7 +19,10 @@ const PlaceCard = (props) => {
   } = offer;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter = {() =>{placeCardHoverHandler(id)}}>
+    <article className="cities__place-card place-card" 
+      onMouseEnter = {() =>{placeCardHoverHandler(id)}}
+      onClick = {() => {currentIdClickHandler(id)}}
+      >
       {isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
@@ -27,7 +30,7 @@ const PlaceCard = (props) => {
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={previewImg} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -75,7 +78,7 @@ const PlaceCard = (props) => {
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
-    previewImg: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,

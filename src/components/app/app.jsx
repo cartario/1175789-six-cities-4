@@ -15,11 +15,15 @@ const offer = {
   type: `Apartment`,
   rating: 80,
   isFavorite: true,
-  id: 0,
-  
+  id: 0,  
 };
 
 const App = (props) => {
+  const {isDataReady} = props;
+
+  if(!isDataReady) {
+    return null;
+  }
 
   return (
     <Router history = {history}>
@@ -52,6 +56,7 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  isDataReady: state.HOTELS.isDataReady,
   offers: state.HOTELS.hotels,
 });
 

@@ -4,57 +4,26 @@ import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
 import PlacesList from "../places-list/places-list.jsx";
 import Sort from "../sort/sort.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer/hotels/hotels.js";
 
-const offers = [
-  {
-    isPremium: true,
-    previewImg: `img/apartment-02.jpg`,
-    price: 121,
-    title: `Beautiful and luxurious apartment at great location`,
-    type: `Apartment1`,
-    rating: 80,
-    isFavorite: true,
-    id: 1,
-  },
-  {
-    isPremium: false,
-    previewImg: `img/apartment-03.jpg`,
-    price: 122,
-    title: `Beautiful and luxurious apartment at great location`,
-    type: `Apartment2`,
-    rating: 60,
-    isFavorite: true,
-    id: 2,
-  },{
-    isPremium: false,
-    previewImg: `img/apartment-03.jpg`,
-    price: 123,
-    title: `Beautiful and luxurious apartment at great location`,
-    type: `Apartment3`,
-    rating: 40,
-    isFavorite: false,
-    id: 3,
-  },{
-    isPremium: true,
-    previewImg: `img/apartment-02.jpg`,
-    price: 124,
-    title: `Beautiful and luxurious apartment at great location`,
-    type: `Apartment4`,
-    rating: 20,
-    isFavorite: false,
-    id: 4,
-  },
-];
 
-const PlacesListContainer = () => {
+const PlacesListContainer = (props) => {
+  const {offers, currentId, setCurrentId} = props;
+
+
+
+  const currentCity = offers.find((offer) => offer.id === currentId).city.name;
+  const currentPlacesCount = offers.filter((offer) => offer.city.name === currentCity).length;
 
   return (
     <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+                <b className="places__found">{currentPlacesCount} places to stay in {currentCity}</b>
               <Sort />
               <PlacesList 
-              offers = {offers}
+                offers = {offers}
+                setCurrentId = {setCurrentId}
               />
             </section>
   );
@@ -65,4 +34,16 @@ PlacesListContainer.propTypes = {
  
 };
 
-export default PlacesListContainer;
+const mapStateToProps = (state) => ({
+  offers: state.HOTELS.hotels,
+  currentId: state.HOTELS.currentId,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentId(id) {
+    dispatch(ActionCreator.setCurrentId(id));
+  },
+});
+
+export {PlacesListContainer};
+export default connect(mapStateToProps, mapDispatchToProps)(PlacesListContainer);

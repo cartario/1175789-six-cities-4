@@ -10,7 +10,8 @@ import PlacesListContainer from "../places-list-container/places-list-container.
 
 const userName = `Vasil3`;
 
-const Main = () => {
+const Main = (props) => {
+
   return (
     <>
       <div style={{display: `none`}}>

@@ -5,7 +5,7 @@ import {Switch, Route, Router, Redirect} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import PlaceCard from "../place-card/place-card.jsx";
-import PlacesList from "../places-list/places-list.jsx";
+import { connect } from "react-redux";
 
 const offer = {
   isPremium: true,
@@ -19,9 +19,8 @@ const offer = {
   
 };
 
+const App = (props) => {
 
-
-const App = () => {
   return (
     <Router history = {history}>
       <Switch>
@@ -29,7 +28,9 @@ const App = () => {
           exact
           path={AppRoutes.MAIN}
           render= {()=>{
-            return <Main/>;
+            return <Main
+            
+            />;
           }
           }
         />
@@ -50,4 +51,9 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.HOTELS.hotels,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

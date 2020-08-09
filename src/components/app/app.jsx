@@ -4,8 +4,9 @@ import {AppRoutes} from "../../const.js";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 
 import Main from "../main/main.jsx";
-import PlaceCard from "../place-card/place-card.jsx";
 import OfferPage from "../offer-page/offer-page.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
+import Favorites from "../favorites/favorites.jsx";
 
 import {connect} from "react-redux";
 
@@ -51,15 +52,22 @@ const App = (props) => {
           }
         />
         <Route
-          path="/pc"
+          path={AppRoutes.SIGN_IN}
           render= {()=>{
-            return <PlaceCard
-              offer={offer}
-              
+            return <SignIn
             />;
           }
           }
         />
+        <Route
+          path={AppRoutes.FAVORITES}
+          render= {()=>{
+            return <Favorites
+            />;
+          }
+          }
+        />
+        
 
         
       </Switch>

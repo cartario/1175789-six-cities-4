@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
+
 import PlaceCard from "../place-card/place-card.jsx";
 
 

@@ -18,7 +18,7 @@ class PlacesList extends React.Component {
     this.placeCardHoverHandler = this.placeCardHoverHandler.bind(this);
   }
 
-  currentIdClickHandler(activeId){
+  currentIdClickHandler(activeId){    
     this.props.setCurrentId(activeId);
   }
 

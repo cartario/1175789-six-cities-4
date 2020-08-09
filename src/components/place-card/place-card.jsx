@@ -2,24 +2,28 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
+import {history} from "../../history.js";
 
 class PlaceCard extends React.Component{
   constructor(props){
     super(props);
-
-    
-
     this._activeHoverHandle = this._activeHoverHandle.bind(this);
+    this._currentIdClickHandler = this._currentIdClickHandler.bind(this);
   }
 
   _activeHoverHandle() {
+    this.props.placeCardHoverHandler(this.props.offer);    
+  }
 
-    this.props.placeCardHoverHandler(this.props.offer);
+  _currentIdClickHandler() {
     
+    this.props.currentIdClickHandler(this.props.offer.id);
+    
+    history.push(`/offer/${this.props.offer.id}`)
   }
 
   render(){    
-    const {offer, currentIdClickHandler} = this.props;
+    const {offer} = this.props;
 
   const {
     isPremium,
@@ -36,7 +40,7 @@ class PlaceCard extends React.Component{
     return (
       <article className="cities__place-card place-card" 
         onMouseEnter = {this._activeHoverHandle}
-        onClick = {() => {currentIdClickHandler(id)}}
+        onClick = {this._currentIdClickHandler}
         >
         {isPremium &&
           <div className="place-card__mark">

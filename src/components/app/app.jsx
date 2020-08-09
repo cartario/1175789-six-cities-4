@@ -5,7 +5,9 @@ import {Switch, Route, Router, Redirect} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import PlaceCard from "../place-card/place-card.jsx";
-import { connect } from "react-redux";
+import OfferPage from "../offer-page/offer-page.jsx";
+
+import {connect} from "react-redux";
 
 const offer = {
   isPremium: true,
@@ -34,6 +36,15 @@ const App = (props) => {
           render= {()=>{
             return <Main
             
+            />;
+          }
+          }
+        />
+        <Route
+          path="/offer"
+          render= {()=>{
+            return <OfferPage
+
             />;
           }
           }

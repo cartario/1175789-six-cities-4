@@ -5,29 +5,42 @@ import {Link} from "react-router-dom";
 import PlaceCard from "../place-card/place-card.jsx";
 
 
-const PlacesList = (props) => {
-  const {offers, setCurrentId} = props;
+class PlacesList extends React.Component {
+  constructor(props){
+    super(props);
 
-  const placeCardHoverHandler = (activeId) => {
-    // setCurrentId(activeId);
-  };
+    this.state = {
+      activeCard: null,
+    };
 
-  const currentIdClickHandler = (activeId) => {
-    setCurrentId(activeId);
-  };
+    
+    this.currentIdClickHandler = this.currentIdClickHandler.bind(this);
+    this.placeCardHoverHandler = this.placeCardHoverHandler.bind(this);
+  }
 
-  return (
-    <>
+  currentIdClickHandler(activeId){
+    this.props.setCurrentId(activeId);
+  }
+
+  placeCardHoverHandler(offer){
+    this.setState({
+      activeCard: offer,
+    })
+  }
+
+  render(){
+    const {offers} = this.props;
+
+    return (
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer)=> <PlaceCard key={offer.id} offer={offer}
-          placeCardHoverHandler ={placeCardHoverHandler}
-          currentIdClickHandler= {currentIdClickHandler}
+          placeCardHoverHandler ={this.placeCardHoverHandler}
+          currentIdClickHandler= {this.currentIdClickHandler}
         />)}
       </div>
-    </>
-  );
+    );
+  }
 };
-
 
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(

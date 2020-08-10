@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
+import { connect } from "react-redux";
 
 const Header = (props) => {
-  // const {userName} = props;
+  const {isAuth} = props;
+
   const userName = `Vasil4`;
-  const isAuth = false;
+
 
   return (
     <header className="header">
@@ -43,4 +45,9 @@ Header.propTypes = {
  
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  isAuth: state.USER.isAuth,
+});
+
+export {Header};
+export default connect(mapStateToProps)(Header);

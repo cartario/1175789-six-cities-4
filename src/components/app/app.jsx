@@ -30,6 +30,7 @@ const App = (props) => {
           render= {()=>{
             return <Main
               offers={offers}
+              
             />;
           }
           }
@@ -61,15 +62,13 @@ const App = (props) => {
           }
           }
         />
-        
-
-        
       </Switch>
     </Router>
   );
 };
 
 const mapStateToProps = (state) => ({
+ 
   isDataReady: state.HOTELS.isDataReady,
   offers: state.HOTELS.hotels,
   currentId: state.HOTELS.currentId,

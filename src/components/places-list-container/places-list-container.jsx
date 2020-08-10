@@ -9,7 +9,7 @@ import {ActionCreator} from "../../reducer/hotels/hotels.js";
 
 
 const PlacesListContainer = (props) => {
-  const {offers, currentId = 1, setCurrentId} = props;
+  const {offers, currentId = 1} = props;
 
   const currentCity = offers.find((offer) => offer.id === currentId).city.name;
   const currentPlacesCount = offers.filter((offer) => offer.city.name === currentCity).length;
@@ -21,7 +21,7 @@ const PlacesListContainer = (props) => {
               <Sort />
               <PlacesList 
                 offers = {offers}
-                setCurrentId = {setCurrentId}
+                
               />
             </section>
   );
@@ -37,11 +37,7 @@ const mapStateToProps = (state) => ({
   currentId: state.HOTELS.currentId,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentId(id) {
-    dispatch(ActionCreator.setCurrentId(id));
-  },
-});
+
 
 export {PlacesListContainer};
-export default connect(mapStateToProps, mapDispatchToProps)(PlacesListContainer);
+export default connect(mapStateToProps)(PlacesListContainer);

@@ -8,10 +8,9 @@ import Locations from "../locations/locations.jsx";
 import Map from "../map/map.jsx";
 import PlacesListContainer from "../places-list-container/places-list-container.jsx";
 
-const userName = `Vasil3`;
-
 const Main = (props) => {
   const {offers} = props;
+
   return (
     <>
       <div style={{display: `none`}}>
@@ -31,7 +30,7 @@ const Main = (props) => {
         </svg>
       </div>
       <div className="page page--gray page--main">
-        <Header userName = {userName}/>
+        <Header />
         <main className = "page__main page__main--index">
           <h1 className = "visually-hidden">Cities</h1>
           <div className="tabs">

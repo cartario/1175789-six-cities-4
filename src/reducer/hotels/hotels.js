@@ -34,6 +34,8 @@ export const ActionCreator = {
       payload: comments,
     };
   },
+
+
 };
 
 export const Operation = {
@@ -58,6 +60,17 @@ export const Operation = {
         throw err;
       })
   },
+
+  postNewComment: (userId, commentPost) => (dispatch, getState, api) => {
+    return api.post(`/comments/${userId}`, commentPost)
+      .then((response)=>{
+        
+      })
+      .catch((err)=>{
+        throw err;
+      });
+  },
+
 };
 
 export const reducer = (state = initialState, action) => {

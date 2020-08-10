@@ -24,7 +24,6 @@ const store = createStore(
 );
 
 store.dispatch(Operation.loadHotels());
-store.dispatch(Operation.loadComments(1));
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(

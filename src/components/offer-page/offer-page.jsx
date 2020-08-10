@@ -137,7 +137,9 @@ class OfferPage extends React.Component{
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewsList />
+                <ReviewsList 
+                  currentId = {currentId}
+                />
               </section>
             </div>
           </div>

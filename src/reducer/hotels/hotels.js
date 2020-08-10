@@ -60,7 +60,7 @@ export const Operation = {
   loadComments: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
       .then((response) => {        
-        const dataFromAdapter = adapterComment(response.data);
+        const dataFromAdapter = adapterComment(response.data);        
         dispatch(ActionCreator.setLoadComments(dataFromAdapter));
       })
       .catch((err) =>{

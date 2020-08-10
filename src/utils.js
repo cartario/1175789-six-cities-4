@@ -1,6 +1,5 @@
 // import moment from "moment";
 
-
 // export const getDateFormat = (date) => {
 //   if (date) {
 //     return moment(date).format(`MMMM D, YYYY`);
@@ -35,6 +34,28 @@ export const getRatingProcent = (rate) => {
         return 100;    
     default:
       return 0;
+  }
+};
+
+const SortType = {
+  PRICE_UP: `PRICE_UP`,
+  PRICE_DOWN: `PRICE_DOWN`,
+  RATING_UP: `RATING_UP`,
+  RATING_DOWN: `RATING_DOWN`,
+};
+
+const sort = (sortType, list) => {
+  switch(type){
+    case SortType.PRICE_UP:
+      return list.sort((a, b) => a.price - b.price);
+    case SortType.PRICE_DOWN:
+      return list.sort((a, b) => b.price - a.price);
+    case SortType.RATING_UP:
+      return list.sort((a, b) => a.rating - b.rating);
+    case SortType.RATING_DOWN:
+      return list.sort((a, b) => b.rating - a.rating);
+    default:
+      return list;
   }
 };
 

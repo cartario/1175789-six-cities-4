@@ -7,17 +7,25 @@ import {Operation} from "../../reducer/hotels/hotels";
 
 import withComment from "../../hocs/with-comment/with-comment.js";
 
+const LIMIT_COMMENT_COUNT = 10;
+
+
+
 const ReviewFormCommented = withComment(ReviewForm);
 
 const ReviewsList = (props) => {
   const {isAuth, comments, postNewComment, currentId} = props;
-
+  
   return (
     
     <React.Fragment>
     <h2 className="reviews__title">Reviews · <span className="reviews__amount">{comments.length}</span></h2>
       <ul className="reviews__list">
-        {comments.map((comment)=> <ReviewsItem key={comment.id} comment={comment}/>).slice(0, 10)}
+        {comments.map((comment)=> <ReviewsItem key={comment.id} comment={comment}/>)
+        .slice(0, LIMIT_COMMENT_COUNT)
+        .sort((a, b) => a.date - b.date)
+        .reverse()
+        }
       </ul>
 
         {isAuth && <ReviewFormCommented 

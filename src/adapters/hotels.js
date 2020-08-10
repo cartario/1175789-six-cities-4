@@ -26,9 +26,10 @@ export const adapter = (hotels) => {
 };
 
 export const adapterComment = (comments) => {
+  debugger;
   return comments.map((comment) => ({
     textComment: comment.comment,
-    date: comment.date,
+    date: new Date(comment.date),
     id: comment.id,
     rating: comment.rating,
     user: {

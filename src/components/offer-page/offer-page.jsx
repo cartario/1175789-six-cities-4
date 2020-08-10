@@ -15,7 +15,7 @@ class OfferPage extends React.Component{
   constructor(props){
     super(props);
   }
-  
+
   componentDidMount(){
     const {match, loadComments, loadNearByOffers} = this.props;
     const currentId = Number(match.params.id);
@@ -148,7 +148,7 @@ class OfferPage extends React.Component{
           </section>
         </section>
 
-      <OfferPageFooter nearByOffers={nearByOffers}/>
+      <OfferPageFooter nearByOffers={nearByOffers} currentId = {currentId}/>
     </main>
     </>
     );

@@ -2,7 +2,8 @@ import React from "react";
 
 
 const ReviewForm = (props) => {
-  const {onChange, onSubmit, comment, rating} = props;
+  const {onChange, onSubmit, comment, rating, isValidForm} = props;
+  
   return (
     <form onSubmit={onSubmit} className="reviews__form form" action="#" method="post">
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -36,7 +37,7 @@ const ReviewForm = (props) => {
             </svg>
           </label>
 
-          <input  onChange = {onChange} checked={rating === 1} className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"/>
+          <input checked={rating === 1} onChange = {onChange}  className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"/>
           <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
             <svg className="form__star-image" width="37" height="33">
               <use xlinkHref="#icon-star"></use>
@@ -48,7 +49,7 @@ const ReviewForm = (props) => {
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+          <button disabled={!isValidForm} className="reviews__submit form__submit button" type="submit">Submit</button>
         </div>
       </form>
   );

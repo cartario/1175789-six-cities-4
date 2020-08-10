@@ -19,6 +19,8 @@ export const withComment = (Component) => {
         comment: ``,
         rating: 0,        
       };
+
+      this.isValidForm = false;
     }
 
     handleChange(e) {
@@ -30,29 +32,28 @@ export const withComment = (Component) => {
         this.setState(extend(this.state, {comment: e.target.value}));
       }
 
-      const isValidForm = (this.state.rating > 0 && 
+      this.isValidForm = (this.state.rating > 0 && 
         this.state.comment.length >= LIMIT_TEXT_COMMENT.MIN && 
         this.state.comment.length <= LIMIT_TEXT_COMMENT.MAX);
-        
-      console.log(isValidForm)
     }
 
     handleSubmit(e) {
       e.preventDefault();
       
-      const {postNewComment, currentId} = this.props;
-
+      const {postNewComment, currentId} = this.props;     
       
+      if(this.isValidForm) {
+        postNewComment(currentId, {        
+          comment: this.state.comment,
+          rating: this.state.rating,
+        });
+  
+        this.setState({
+          comment: ``,
+          rating: 0, 
+        });
+      }
       
-      postNewComment(currentId, {        
-        comment: this.state.comment,
-        rating: this.state.rating,
-      });
-
-      this.setState({
-        comment: ``,
-        rating: 0, 
-      });
     }
 
     render() {
@@ -61,6 +62,7 @@ export const withComment = (Component) => {
         onSubmit = {this.handleSubmit}
         comment = {this.state.comment}
         rating = {this.state.rating}
+        isValidForm = {this.isValidForm}
         {...this.props}
       />;
     }

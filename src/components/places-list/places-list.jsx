@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import PlaceCard from "../place-card/place-card.jsx";
+
+import {Operation} from "../../reducer/hotels/hotels.js";
 
 
 class PlacesList extends React.Component {
@@ -21,6 +24,7 @@ class PlacesList extends React.Component {
 
   currentIdClickHandler(activeId){    
     this.props.setCurrentId(activeId);
+    this.props.loadComments(activeId);
   }
 
   placeCardHoverHandler(offer){
@@ -58,4 +62,11 @@ PlacesList.propTypes = {
   )
 };
 
-export default PlacesList;
+const mapDispatchToProps = (dispatch) => ({
+  loadComments(id){
+    dispatch(Operation.loadComments(id));
+  },
+});
+
+export {PlacesList};
+export default connect(null, mapDispatchToProps)(PlacesList);

@@ -23,3 +23,18 @@ export const adapter = (hotels) => {
     bedrooms: hotel.bedrooms,
   }));
 };
+
+export const adapterComment = (comments) => {
+  return comments.map((comment) => ({
+    textComment: comment.comment,
+    date: comment.date,
+    id: comment.id,
+    rating: comment.rating,
+    user: {
+      avatarUrl: comment.user.avatar_url,
+      id: comment.user.id,
+      isPro: comment.user.is_pro,
+      name: comment.user.name,
+    },
+  }));
+};

@@ -1,16 +1,18 @@
 import {extend} from "../../utils.js";
-import {adapter} from "../../adapters/hotels.js";
+import {adapter, adapterComment} from "../../adapters/hotels.js";
 
 const initialState = {
   isDataReady: false,
   currentId: 1,
   hotels: [],
+  comments: [],
 };
 
 export const ActionType = {
   IS_DATA_READY: `IS_DATA_READY`,  
   SET_CURRENT_ID: `SET_CURRENT_ID`,
   GET_ALL_HOTELS: `GET_ALL_HOTELS`,
+  GET_ALL_COMMENTS: `GET_ALL_COMMENTS`,
 };
 
 export const ActionCreator = {
@@ -34,6 +36,13 @@ export const ActionCreator = {
       payload: hotels,
     };
   },
+
+  setLoadComments: (comments)=> {    
+    return {
+      type: ActionType.GET_ALL_COMMENTS,
+      payload: comments,
+    };
+  },
 };
 
 export const Operation = {
@@ -49,6 +58,17 @@ export const Operation = {
       throw err;
     });
   },
+
+  loadComments: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((response) => {        
+        const dataFromAdapter = adapterComment(response.data);
+        dispatch(ActionCreator.setLoadComments(dataFromAdapter));
+      })
+      .catch((err) =>{
+        throw err;
+      })
+  },
 };
 
 export const reducer = (state = initialState, action) => {
@@ -61,6 +81,9 @@ export const reducer = (state = initialState, action) => {
 
     case ActionType.GET_ALL_HOTELS:
       return extend(state, {hotels: action.payload});
+
+    case ActionType.GET_ALL_COMMENTS:
+      return extend(state, {comments: action.payload});
 
     default:
       return state;

@@ -9,7 +9,7 @@ import {ActionCreator} from "../../reducer/hotels/hotels.js";
 
 
 const PlacesListContainer = (props) => {
-  const {offers, currentId, setCurrentId} = props;
+  const {offers, currentId = 1, setCurrentId} = props;
 
   const currentCity = offers.find((offer) => offer.id === currentId).city.name;
   const currentPlacesCount = offers.filter((offer) => offer.city.name === currentCity).length;

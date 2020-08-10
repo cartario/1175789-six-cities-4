@@ -9,21 +9,13 @@ import SignIn from "../sign-in/sign-in.jsx";
 import Favorites from "../favorites/favorites.jsx";
 import PrivateRoute from "../private-route/private-route.jsx"
 
+import {Operation} from "../../reducer/hotels/hotels.js";
+
 import {connect} from "react-redux";
 
-const offer = {
-  isPremium: true,
-  previewImg: `img/apartment-01.jpg`,
-  price: 121,
-  title: `Beautiful and luxurious apartment at great location`,
-  type: `Apartment`,
-  rating: 80,
-  isFavorite: true,
-  id: 0,  
-};
 
 const App = (props) => {
-  const {isDataReady, currentId, offers} = props;
+  const {isDataReady, loadComments, offers} = props;
 
   if(!isDataReady) {
     return null;
@@ -43,11 +35,12 @@ const App = (props) => {
           }
         />
         <Route
-          path={AppRoutes.ROOM}
-          render= {()=>{
+          path={`${AppRoutes.ROOM}/:id?`}
+          render= {({match})=>{
             return <OfferPage
-              currentId = {currentId}
+              loadComments = {loadComments}
               offers = {offers}
+              match={match}
             />;
           }
           }
@@ -82,5 +75,11 @@ const mapStateToProps = (state) => ({
   currentId: state.HOTELS.currentId,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadComments(id) {
+    dispatch(Operation.loadComments(id));
+  },
+});
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

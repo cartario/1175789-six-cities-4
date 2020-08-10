@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import PlaceCard from "../place-card/place-card.jsx";
 
 import {Operation} from "../../reducer/hotels/hotels.js";
 
+import {history} from "../../history.js";
 
 class PlacesList extends React.Component {
   constructor(props){
@@ -23,8 +24,8 @@ class PlacesList extends React.Component {
   }
 
   currentIdClickHandler(activeId){    
-    this.props.setCurrentId(activeId);
-    this.props.loadComments(activeId);
+    // this.props.setCurrentId(activeId);
+    // this.props.loadComments(activeId);
   }
 
   placeCardHoverHandler(offer){

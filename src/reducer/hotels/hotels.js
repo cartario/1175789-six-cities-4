@@ -3,7 +3,7 @@ import {adapter, adapterComment} from "../../adapters/hotels.js";
 
 const initialState = {
   isDataReady: false,
-  currentId: 1,
+  // currentId: 1,
   hotels: [],
   comments: [],
 };

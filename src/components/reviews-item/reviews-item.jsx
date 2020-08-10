@@ -4,7 +4,7 @@ import {getRatingProcent} from "../../utils.js";
 
 const ReviewsItem = (props) => {
   const {comment} = props;
-  const {avatarUrl, user, textComment, date, rating} = comment;
+  const {user, textComment, date, rating} = comment;
   
   return (
         <li className="reviews__item">

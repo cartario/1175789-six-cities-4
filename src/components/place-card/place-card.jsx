@@ -17,8 +17,7 @@ class PlaceCard extends React.Component{
 
   _currentIdClickHandler() {
     
-    this.props.currentIdClickHandler(this.props.offer.id);
-    
+    this.props.currentIdClickHandler(this.props.offer.id);    
     history.push(`/offer/${this.props.offer.id}`)
   }
 

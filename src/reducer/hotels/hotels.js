@@ -5,12 +5,14 @@ const initialState = {
   isDataReady: false,  
   hotels: [],
   comments: [],
+  nearByOffers: [],
 };
 
 export const ActionType = {
   IS_DATA_READY: `IS_DATA_READY`,    
   GET_ALL_HOTELS: `GET_ALL_HOTELS`,
   GET_ALL_COMMENTS: `GET_ALL_COMMENTS`,
+  GET_NEARBY_OFFERS: `GET_NEARBY_OFFERS`,
 };
 
 export const ActionCreator = {
@@ -35,7 +37,12 @@ export const ActionCreator = {
     };
   },
 
-
+  nearByOffers: (offersList)=> {
+    return {
+      type: ActionType.GET_NEARBY_OFFERS,
+      payload: offersList,
+    };
+  },
 };
 
 export const Operation = {
@@ -71,6 +78,17 @@ export const Operation = {
       });
   },
 
+  loadNearByOffers: (offerId) => (dispatch, getState, api) => {
+    
+    return api.get(`/hotels/${offerId}/nearby`).then((response) => {
+      const dataFromAdapter = adapter(response.data);
+      dispatch(ActionCreator.nearByOffers(dataFromAdapter));      
+    })
+    .catch((err) => {      
+      throw err;
+    });
+  },
+
 };
 
 export const reducer = (state = initialState, action) => {
@@ -83,6 +101,9 @@ export const reducer = (state = initialState, action) => {
 
     case ActionType.GET_ALL_COMMENTS:
       return extend(state, {comments: action.payload});
+
+    case ActionType.GET_NEARBY_OFFERS:
+      return extend(state, {nearByOffers: action.payload});
 
     default:
       return state;

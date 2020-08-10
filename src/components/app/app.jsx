@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 
 
 const App = (props) => {
-  const {isDataReady, loadComments, offers} = props;
+  const {isDataReady, loadComments, offers, loadNearByOffers} = props;
 
   if(!isDataReady) {
     return null;
@@ -40,7 +40,8 @@ const App = (props) => {
           render= {({match})=>{
             return <OfferPage
               loadComments = {loadComments}
-              offers = {offers}
+              loadNearByOffers = {loadNearByOffers}
+              offers = {offers}              
               match={match}
             />;
           }
@@ -67,16 +68,18 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
- 
+const mapStateToProps = (state) => ({ 
   isDataReady: state.HOTELS.isDataReady,
   offers: state.HOTELS.hotels,
-  currentId: state.HOTELS.currentId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadComments(id) {
     dispatch(Operation.loadComments(id));
+  },
+
+  loadNearByOffers(id) {
+    dispatch(Operation.loadNearByOffers(id));
   },
 });
 

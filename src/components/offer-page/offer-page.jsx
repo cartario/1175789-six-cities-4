@@ -15,15 +15,16 @@ class OfferPage extends React.Component{
   constructor(props){
     super(props);
   }
-
+  
   componentDidMount(){
-    const {match, loadComments} = this.props;
+    const {match, loadComments, loadNearByOffers} = this.props;
     const currentId = Number(match.params.id);
     loadComments(currentId);
+    loadNearByOffers(currentId);
   }
 
   render(){
-    const {offers, match} = this.props;    
+    const {offers, nearByOffers, match} = this.props;    
     const currentId = Number(match.params.id);
     const currentOffer = offers.find((offer) => offer.id === currentId);
   
@@ -147,7 +148,7 @@ class OfferPage extends React.Component{
           </section>
         </section>
 
-      <OfferPageFooter />
+      <OfferPageFooter nearByOffers={nearByOffers}/>
     </main>
     </>
     );

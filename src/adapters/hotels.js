@@ -1,4 +1,5 @@
 export const adapter = (hotels) => {
+
   return hotels.map((hotel) => ({
     id: hotel.id,
     city: hotel.city,

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {AppRoutes} from "../../const";
 import {Link} from "react-router-dom";
 import {history} from "../../history.js";
+import {getRatingProcent} from "../../utils.js";
 
 class PlaceCard extends React.Component{
   constructor(props){
@@ -79,7 +80,7 @@ class PlaceCard extends React.Component{
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${rating}%`}}></span>
+              <span style={{width: `${getRatingProcent(rating)}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
